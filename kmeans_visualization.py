@@ -62,8 +62,8 @@ if generate_button:
 if train_button:
 	data = st.session_state.sample_data
 
-	# assignments = kmeans(data, centroid_size)
-	assignments = KMeans(n_clusters=centroid_size).fit_predict(data)
+	assignments = kmeans(data, centroid_size)
+	# assignments = KMeans(n_clusters=centroid_size).fit_predict(data)
 	for i in range(centroid_size):
 		cluster_i = data[assignments == i]
 		st.session_state.ax.scatter(cluster_i[:, 0], cluster_i[:, 1], alpha=0.5)
