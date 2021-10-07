@@ -1,19 +1,20 @@
 import numpy as np
 
 
-# Compute new center of each cluster
-def update_centers(assignments, centers, features, k):
-    for i in range(k):
-        center_points = features[assignments == i]
-        centers[i] = np.mean(center_points, axis=0)
+def kmeans(features, k, num_iters=100):
+    """ Use kmeans algorithm to group features into k clusters.
 
+    This function makes use of numpy functions and broadcasting to speed up the
+    first part(cluster assignment) of kmeans algorithm.
 
-def kmeans(features, k, num_iterations=100):
-    """
+    Hints
+    - You may find np.repeat and np.argmin useful
+
     Args:
-        features - Array of N features vectors. Each row represents a feature vector.
+        features - Array of N features vectors. Each row represents a feature
+            vector.
         k - Number of clusters to form.
-        num_iterations - Maximum number of iterations the algorithm will run.
+        num_iters - Maximum number of iterations the algorithm will run.
 
     Returns:
         assignments - Array representing cluster assignment of each point.
@@ -24,12 +25,18 @@ def kmeans(features, k, num_iterations=100):
 
     assert N >= k, 'Number of clusters cannot be greater than number of points'
 
-    # Randomly initialize cluster centers
-    indexes = np.random.choice(N, size=k, replace=False)
-    centers = features[indexes]
+    # Randomly initalize cluster centers
+    idxs = np.random.choice(N, size=k, replace=False)
+    centers = features[idxs]
     assignments = np.zeros(N, dtype=np.uint32)
 
-    for n in range(num_iterations):
+    # Compute new center of each cluster
+    def update_centers(assignments, centers, features, k):
+        for i in range(k):
+            center_points = features[assignments == i]
+            centers[i] = np.mean(center_points, axis=0)
+
+    for n in range(num_iters):
         features_broadcast = np.tile(features, (k, 1))
         centers_broadcast = np.repeat(centers, N, axis=0)
 
