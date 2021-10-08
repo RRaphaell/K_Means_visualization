@@ -29,7 +29,7 @@ main_page = dict(
 
 figure = dict(
     figsize=(14, 12),
-    xlim=(0, 20),
-    ylim=(0, 20),
+    xlim=(0, 30),
+    ylim=(0, 30),
     offset=2,
 )
