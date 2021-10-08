@@ -1,5 +1,8 @@
 import numpy as np
 from config.config import figure
+import time
+
+COLORS = ["#FF0000", "#000000", "#00FFFF", "#0080FF", "#5500FF", "#C400FF", "#FFBC00", "#FFFF00", "#ABFF00", "#00FFB3"]
 
 
 # Compute new center of each cluster
@@ -31,12 +34,13 @@ def kmeans(sample_data, centroid_size, data_plot, fig, ax, num_iterations=50):
     assignments = np.zeros(N, dtype=np.uint32)
 
     for n in range(num_iterations):
-        scatter = ax.scatter(centers[:, 0], centers[:, 1], s=500)
+        scatter = ax.scatter(centers[:, 0], centers[:, 1], alpha=1, zorder=2, s=1000, marker="^", c=COLORS[:len(centers)])
         for i in range(centroid_size):
             cluster_i = sample_data[assignments == i]
-            ax.scatter(cluster_i[:, 0], cluster_i[:, 1], alpha=0.5)
+            ax.scatter(cluster_i[:, 0], cluster_i[:, 1], alpha=0.5, zorder=1, c=COLORS[i])
         ax.set(xlim=figure["xlim"], ylim=figure["ylim"])
         data_plot.pyplot(fig)
+        time.sleep(0.5)
         scatter.remove()
 
         features_broadcast = np.tile(sample_data, (centroid_size, 1))
