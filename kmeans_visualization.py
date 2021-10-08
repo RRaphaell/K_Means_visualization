@@ -1,10 +1,10 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from k_means import kmeans
-from generate_data import generate_sample_data, generate_sample_data_centroids
-from config import sidebar, main_page, figure
+from scripts.k_means import kmeans
+from scripts.generate_data import generate_sample_data, generate_sample_data_centroids
+from config.config import sidebar, main_page, figure
 
-# config file vnaxo
+
 st.set_page_config(
     page_title="K-Means clustering",
 )

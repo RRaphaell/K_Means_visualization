@@ -1,5 +1,5 @@
 import numpy as np
-from config import figure
+from config.config import figure
 
 
 # Compute new center of each cluster
