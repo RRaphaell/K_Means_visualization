@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 from scripts.k_means import kmeans
 from scripts.generate_data import generate_sample_data, generate_sample_data_centroids
@@ -47,6 +48,8 @@ with st.sidebar.form(key="Training form"):
 
 # --------------- Main page ---------------------
 st.write(main_page["title"], unsafe_allow_html=True)
+social_components = open("assets/social_components.html", 'r', encoding='utf-8')
+components.html(social_components.read())
 st.write(main_page["description"])
 
 create_plot_window()
@@ -69,3 +72,4 @@ if generate_button:
 if train_button:
     kmeans(st.session_state.sample_data, centroid_size, st.session_state.data_plot,
            st.session_state.fig, st.session_state.ax)
+
