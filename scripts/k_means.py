@@ -6,7 +6,7 @@ COLORS = ["#FF0000", "#000000", "#00FFFF", "#0080FF", "#5500FF", "#C400FF", "#FF
 
 
 # Compute new center of each cluster
-def update_centers(assignments, centers, features, k):
+def update_centers(assignments: np.ndarray, centers: np.ndarray, features: np.ndarray, k: int):
     for i in range(k):
         center_points = features[assignments == i]
         centers[i] = np.mean(center_points, axis=0)
@@ -38,6 +38,7 @@ def kmeans(sample_data, centroid_size, data_plot, fig, ax, num_iterations=50):
         for i in range(centroid_size):
             cluster_i = sample_data[assignments == i]
             ax.scatter(cluster_i[:, 0], cluster_i[:, 1], alpha=0.5, zorder=1, c=COLORS[i])
+
         ax.set(xlim=figure["xlim"], ylim=figure["ylim"])
         data_plot.pyplot(fig)
         time.sleep(0.5)
