@@ -3,7 +3,7 @@
 In this repo I've implemented a simulation for k-means clustering. <br>
 It's written from scratch so it will help you become familiar with this simple algorithm.
 
-Here is the [web app](https://share.streamlit.io/rraphaell/k-means-visualize/main/kmeans_visualization.py)
+Here is the [web app](https://share.streamlit.io/rraphaell/k_means_visualization/main/kmeans_visualization.py)
 
 ![visualization](assets/demo.gif)
 
